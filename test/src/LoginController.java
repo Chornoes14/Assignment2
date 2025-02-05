@@ -23,6 +23,7 @@ public class LoginController {
 
     @FXML
     Label error;
+    
 
     private Stage stage;
     private Scene scene;

@@ -11,6 +11,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class VenueController {
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
     
     // Testing 
     @FXML
@@ -20,6 +24,12 @@ public class VenueController {
         testLabel.setText("Hello: " + username + password);
     }
 
-    
+    public void switchToMain(ActionEvent event) throws IOException{
+        root = FXMLLoader.load(getClass().getResource("fxml/MusicMatchmakerLogin.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
 }
