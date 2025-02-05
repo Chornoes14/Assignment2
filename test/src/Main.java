@@ -11,10 +11,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Pane pane = new Pane();
         Parent root = FXMLLoader.load(getClass().getResource("fxml/MusicMatchmakerLogin.fxml"));
         primaryStage.setTitle("Music Matchmaker");
-        primaryStage.setScene(new Scene(root, 1000, 500));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 

@@ -50,7 +50,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="624.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="624.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VenueController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -137,6 +137,7 @@
                   <Button layoutX="653.0" layoutY="152.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Save Data" />
                   <Button layoutX="653.0" layoutY="196.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Load Data" />
                   <Button layoutX="653.0" layoutY="320.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Venue Details" />
+                  <Label fx:id="testLabel" layoutX="65.0" layoutY="23.0" text="TESTLABEL" />
                </children>
         </AnchorPane>
       </items>
