@@ -89,15 +89,15 @@
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#030303" height="233.0" layoutX="142.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="314.0" />
-            <PasswordField fx:id="passwordField" layoutX="224.0" layoutY="176.0" promptText="Password" />
             <TextField fx:id="usernameField" layoutX="224.0" layoutY="135.0" promptText="Username" />
+            <PasswordField fx:id="passwordField" layoutX="224.0" layoutY="176.0" promptText="Password" />
+            <PasswordField fx:id="fieldPIN" layoutX="225.0" layoutY="224.0" promptText="PIN (Managers Only)" />
             <Button layoutX="276.0" layoutY="290.0" mnemonicParsing="false" onAction="#switchToVen" text="Login" />
             <Label layoutX="193.0" layoutY="37.0" prefHeight="43.0" prefWidth="211.0" text="Music matchmaker login">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <PasswordField fx:id="fieldPIN" layoutX="225.0" layoutY="224.0" promptText="PIN (Managers Only)" />
             <Label fx:id="error" layoutX="459.0" layoutY="118.0" prefHeight="198.0" prefWidth="167.0" />
       </children>
     </AnchorPane>
