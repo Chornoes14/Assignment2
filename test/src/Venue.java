@@ -47,7 +47,7 @@ public class Venue {
 
         String[] suitableSplit = suitabilityString.split(";", 2);
 
-        suitableFor = new Suitability(suitableSplSit[0], suitableSplit[1]);
+        suitableFor = new Suitability(suitableSplit[0], suitableSplit[1]);
 
         isAvailable = true;
     } 
