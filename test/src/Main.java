@@ -13,7 +13,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Pane pane = new Pane();
         Parent root = FXMLLoader.load(getClass().getResource("MusicMatchmakerLogin.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Music Matchmaker");
         primaryStage.setScene(new Scene(root, 1000, 500));
         primaryStage.show();
     }
