@@ -16,7 +16,7 @@ public class VenAndReqControl {
     private Parent root;
     
     public void switchToMain(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("MusicMatchmakerLogin.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/MusicMatchmakerLogin.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -24,7 +24,7 @@ public class VenAndReqControl {
     }
 
     public void switchToVen(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("ManageVenueAndRequests.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/ManageVenueAndRequests.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
