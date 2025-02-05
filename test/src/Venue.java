@@ -5,6 +5,29 @@ public class Venue {
     private int capacity;
     private double bookingPrice;
     private boolean isAvailable;
+    private Suitability suitableFor;
+
+    // private String eventType;
+    // private String eventStyle;
+
+    private class Suitability {
+        private String eventType;
+        private String eventStyle;
+
+        public Suitability(String eventType, String eventStyle) {
+            this.eventType = eventType;
+            this.eventStyle = eventStyle;
+        }
+
+        public String getEventType() {
+            return eventType;
+        }
+
+        public String getEventStyle() {
+            return eventStyle;
+        }
+
+    }
 
 
     //Add innerclass for suitability
@@ -16,11 +39,15 @@ public class Venue {
      * @param capacity
      * @param bookingPrice
      */
-    public Venue(String venueName, String category, int capacity, double bookingPrice) {
+    public Venue(String venueName, String category, int capacity, double bookingPrice, String suitabilityString) {
         this.venueName = venueName;
         this.category = category;
         this.capacity = capacity;
         this. bookingPrice = bookingPrice;
+
+        String[] suitableSplit = suitabilityString.split(";", 2);
+
+        suitableFor = new Suitability(suitableSplSit[0], suitableSplit[1]);
 
         isAvailable = true;
     } 
