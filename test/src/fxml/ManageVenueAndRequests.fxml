@@ -98,7 +98,8 @@
                   <Button layoutX="653.0" layoutY="196.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Load Data" />
                   <Button layoutX="653.0" layoutY="320.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Venue Details" />
                   <Label fx:id="testLabel" layoutX="65.0" layoutY="23.0" text="TESTLABEL" />
-                  <Button fx:id="logout" layoutX="638.0" layoutY="537.0" mnemonicParsing="false" onAction="#switchToMain" text="Logout" />
+                  <Button layoutX="207.0" layoutY="561.0" mnemonicParsing="false" onAction="#switchToStaff" prefHeight="25.0" prefWidth="192.0" text="Staff in the program" />
+                  <Button layoutX="505.0" layoutY="561.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="25.0" prefWidth="209.0" text="Logout" />
                </children>
         </AnchorPane>
       </items>

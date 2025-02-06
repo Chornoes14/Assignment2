@@ -1,5 +1,7 @@
 import java.io.IOException;
 
+import javax.swing.Action;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,8 +20,6 @@ public class LoginController {
     TextField usernameField;
     @FXML
     PasswordField passwordField;
-    @FXML
-    PasswordField fieldPIN;
 
     @FXML
     Label error;
@@ -43,8 +43,7 @@ public class LoginController {
         String username = usernameField.getText();
         // Get password in the password field
         String password = passwordField.getText();
-        // Get PIN in the PIN field
-        String userPIN = fieldPIN.getText();
+        
 
         // 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/ManageVenueAndRequests.fxml"));
@@ -58,6 +57,16 @@ public class LoginController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+
+    public void switchToCreate(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("fxml/CreateAccount.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
     }
 
 }

@@ -38,13 +38,12 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="staffController">
+<VBox prefHeight="496.0" prefWidth="523.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CreateController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -85,27 +84,24 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-         <children>
-            <TableView layoutX="14.0" layoutY="88.0" prefHeight="200.0" prefWidth="451.0">
-              <columns>
-                <TableColumn prefWidth="86.0" text="Staff ID" />
-                <TableColumn prefWidth="93.0" text="Staff Name" />
-                  <TableColumn prefWidth="133.0" text="Username" />
-                  <TableColumn prefWidth="138.0" text="Password" />
-              </columns>
-            </TableView>
-            <Label layoutX="269.0" layoutY="14.0" text="Staff Role">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="423.0" prefWidth="612.0" VBox.vgrow="ALWAYS">
+      <children>
+            <Label layoutX="157.0" layoutY="14.0" text="Create new account">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Button layoutX="505.0" layoutY="88.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="Add Staff" />
-            <Button layoutX="505.0" layoutY="182.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="Delete Staff" />
-            <Button layoutX="505.0" layoutY="136.0" mnemonicParsing="false" text="Update Staff" />
-            <Button layoutX="90.0" layoutY="324.0" mnemonicParsing="false" onAction="#switchToVenue" prefHeight="25.0" prefWidth="209.0" text="Manage Venues and Requests" />
-            <Button layoutX="361.0" layoutY="324.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="25.0" prefWidth="209.0" text="Logout" />
-         </children>
+            <TextField fx:id="createFirst" layoutX="157.0" layoutY="61.0" prefHeight="25.0" prefWidth="210.0" promptText="First name" />
+            <TextField fx:id="createLast" layoutX="157.0" layoutY="97.0" prefHeight="25.0" prefWidth="210.0" promptText="Last name" />
+            <TextField fx:id="createUsername" layoutX="157.0" layoutY="135.0" prefHeight="25.0" prefWidth="210.0" promptText="Username" />
+            <TextField fx:id="createPassword" layoutX="157.0" layoutY="171.0" prefHeight="25.0" prefWidth="210.0" promptText="Password (Minimum 6 chars)" />
+            <TextField fx:id="createEmail" layoutX="157.0" layoutY="248.0" prefHeight="25.0" prefWidth="210.0" promptText="Email" />
+            <TextField fx:id="managerPIN" layoutX="157.0" layoutY="378.0" prefHeight="25.0" prefWidth="210.0" promptText="Authorisation PIN" />
+            <Button layoutX="201.0" layoutY="286.0" mnemonicParsing="false" onAction="#staffRegisterLogin" text="Create staff account" />
+            <Button layoutX="189.0" layoutY="415.0" mnemonicParsing="false" onAction="#managerRegisterLogin" text="Create manager account" />
+            <TextField fx:id="createPassword1" layoutX="157.0" layoutY="207.0" prefHeight="25.0" prefWidth="210.0" promptText="Confirm password" />
+            <Label layoutX="98.0" layoutY="346.0" text="If this will be a manager account, authorisation PIN is required" />
+      </children>
     </AnchorPane>
   </children>
 </VBox>
