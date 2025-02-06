@@ -57,11 +57,6 @@ public class UserCredentials {
      * @return  True if the password given by the user matches the password with the given username
      */
     public boolean validLogin(String userPassword) {
-        if (userPassword == password) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return userPassword.equals(password);
     }
 }

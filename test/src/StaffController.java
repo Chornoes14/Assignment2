@@ -1,11 +1,12 @@
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 
-import SQLmethods.SQLMethods;
+import SQLmethods.DatabaseConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,8 +24,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 public class StaffController implements Initializable{
-
-    private ResultSet resultSet;
     
     private Stage stage;
     private Scene scene;
@@ -66,16 +65,31 @@ public class StaffController implements Initializable{
      * @throws SQLException 
      */
     ObservableList<UserCredentials> initialData() throws SQLException {
-        resultSet = SQLMethods.getManagerTable();
-        // ArrayList<UserCredentials> initTable;
-        
-        UserCredentials user1 = new UserCredentials(resultSet.getString("Username"), resultSet.getString("Password"),
-                            resultSet.getString("Firstname"), resultSet.getString("Lastname"), resultSet.getString("Email"));
-        System.out.println(user1.getEmail());
-        
-        
+        ObservableList<UserCredentials> users = FXCollections.observableArrayList();    //create object
 
-        return FXCollections.observableArrayList(user1);
+        try (Connection con = DatabaseConnection.getConnection();
+			Statement stmt = con.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM MANAGERS")) {
+
+            while (resultSet.next()) {
+                UserCredentials user = new UserCredentials(resultSet.getString("Username"),
+                    resultSet.getString("Password"),
+                    resultSet.getString("Firstname"),
+                    resultSet.getString("Lastname"),
+                    resultSet.getString("Email")
+                );
+                users.add(user);
+                
+            }
+
+		} catch (SQLException e) {
+			System.out.println("Error: Unable to fetch data from the database");
+            e.printStackTrace();
+            return FXCollections.observableArrayList();
+		}
+		
+
+        return users;
 
     }
 
@@ -86,15 +100,16 @@ public class StaffController implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle) {
         usernameList.setCellValueFactory(new PropertyValueFactory<UserCredentials, String>("username"));
         firstnameList.setCellValueFactory(new PropertyValueFactory<UserCredentials, String>("firstName"));
-        firstnameList.setCellValueFactory(new PropertyValueFactory<UserCredentials, String>("lastName"));
+        lastnameList.setCellValueFactory(new PropertyValueFactory<UserCredentials, String>("lastName"));
         emailList.setCellValueFactory(new PropertyValueFactory<UserCredentials, String>("email"));
     
         try {
             staffTable.setItems(initialData());
         } catch (SQLException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            System.out.println("Error: unable to load table data.");
         }
     }
+
 
 }
