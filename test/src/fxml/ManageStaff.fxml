@@ -44,7 +44,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StaffController">
+<VBox prefHeight="472.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StaffController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -87,24 +87,24 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <TableView layoutX="14.0" layoutY="88.0" prefHeight="200.0" prefWidth="451.0">
+            <TableView fx:id="staffTable" layoutX="14.0" layoutY="88.0" prefHeight="246.0" prefWidth="623.0">
               <columns>
-                <TableColumn prefWidth="86.0" text="Staff ID" />
-                <TableColumn prefWidth="93.0" text="Staff Name" />
-                  <TableColumn prefWidth="133.0" text="Username" />
-                  <TableColumn prefWidth="138.0" text="Password" />
+                  <TableColumn fx:id="usernameList" prefWidth="153.0" text="Username" />
+                <TableColumn fx:id="firstnameList" prefWidth="120.0" text="Firstname" />
+                  <TableColumn fx:id="lastnameList" prefWidth="131.0" text="Lastname" />
+                  <TableColumn fx:id="emailList" prefWidth="220.0" text="Email" />
               </columns>
             </TableView>
-            <Label layoutX="269.0" layoutY="14.0" text="Staff Role">
+            <Label layoutX="369.0" layoutY="14.0" text="Staff List">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Button layoutX="505.0" layoutY="88.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="Add Staff" />
-            <Button layoutX="505.0" layoutY="182.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="Delete Staff" />
-            <Button layoutX="505.0" layoutY="136.0" mnemonicParsing="false" text="Update Staff" />
-            <Button layoutX="90.0" layoutY="324.0" mnemonicParsing="false" onAction="#switchToVenue" prefHeight="25.0" prefWidth="209.0" text="Manage Venues and Requests" />
-            <Button layoutX="361.0" layoutY="324.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="25.0" prefWidth="209.0" text="Logout" />
+            <Button layoutX="697.0" layoutY="115.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="Add Staff" />
+            <Button layoutX="697.0" layoutY="209.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="Delete Staff" />
+            <Button layoutX="697.0" layoutY="163.0" mnemonicParsing="false" text="Update Staff" />
+            <Button layoutX="137.0" layoutY="374.0" mnemonicParsing="false" onAction="#switchToVenue" prefHeight="25.0" prefWidth="209.0" text="Manage Venues and Requests" />
+            <Button layoutX="519.0" layoutY="374.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="25.0" prefWidth="209.0" text="Logout" />
          </children>
     </AnchorPane>
   </children>

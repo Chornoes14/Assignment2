@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 
 /**
@@ -11,8 +12,8 @@ import java.sql.SQLException;
  */
 public class SQLMethods {
 
-    public static void main(String[] args) {
-        final String TABLE_NAME = "MANAGERS";
+	public static void checkTable() {
+		final String TABLE_NAME = "MANAGERS";
 
         try (Connection con = DatabaseConnection.getConnection()) {
 
@@ -33,11 +34,32 @@ public class SQLMethods {
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-			System.out.println("FAIL");
 		}
+	}
 
 
-    }
+	public static ResultSet getManagerTable() {
+		final String TABLE_NAME = "Managers";
 
+		try (Connection con = DatabaseConnection.getConnection();
+				Statement stmt = con.createStatement();) {
+			String query = "SELECT * FROM " + TABLE_NAME;
+
+			// try (ResultSet resultSet = stmt.executeQuery(query)) {
+			// 	while(resultSet.next()) {
+			// 		System.out.printf("Username: %s | Password: %s | First Name: %s | Last Name: %s | Email: %s\n",
+			// 				resultSet.getString("Username"), resultSet.getString("Password"),
+			// 				resultSet.getString("Firstname"), resultSet.getString("Lastname"),
+			// 				resultSet.getString("Email"));
+			// 	}
+			// } 
+			ResultSet resultSet = stmt.executeQuery(query);
+			return resultSet;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return null;
+	}
 
 }

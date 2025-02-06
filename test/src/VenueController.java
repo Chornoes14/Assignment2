@@ -1,5 +1,6 @@
 import java.io.IOException;
 
+import SQLmethods.SQLMethods;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,5 +44,9 @@ public class VenueController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void table(ActionEvent event) throws IOException {
+        SQLMethods.checkTable();
     }
 }

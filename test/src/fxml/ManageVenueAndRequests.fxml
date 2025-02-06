@@ -73,7 +73,7 @@
                         <TableColumn prefWidth="152.0" text="Suitable for" />
                     </columns>
                   </TableView>
-                  <Button layoutX="653.0" layoutY="62.0" mnemonicParsing="false" text="Import Venue Data" />
+                  <Button layoutX="653.0" layoutY="62.0" mnemonicParsing="false" onAction="#table" text="Import Venue Data" />
                   <Button layoutX="653.0" layoutY="108.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Import Requests" />
                   <Button layoutX="653.0" layoutY="460.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Book Venue" />
                   <Button layoutX="653.0" layoutY="417.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Auto Match" />
