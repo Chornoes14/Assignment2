@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "SQLMethods",
+            "request": "launch",
+            "mainClass": "SQLmethods.SQLMethods",
+            "projectName": "Assignment2_b7aac2bb"
+        },
+        {
+            "type": "java",
             "name": "Launch App",
             "request": "launch",
             "mainClass": "Main",
