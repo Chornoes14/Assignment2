@@ -43,7 +43,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="450.0" prefWidth="523.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CreateController">
+<VBox prefHeight="564.0" prefWidth="526.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CreateController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -93,13 +93,13 @@
             </Label>
             <TextField fx:id="createFirst" layoutX="224.0" layoutY="61.0" prefHeight="25.0" prefWidth="246.0" promptText="First name" />
             <TextField fx:id="createLast" layoutX="224.0" layoutY="98.0" prefHeight="25.0" prefWidth="246.0" promptText="Last name" />
-            <TextField fx:id="createUsername" layoutX="224.0" layoutY="135.0" prefHeight="25.0" prefWidth="246.0" promptText="Username" />
+            <TextField fx:id="createUsername" layoutX="224.0" layoutY="135.0" prefHeight="25.0" prefWidth="246.0" promptText="Username (Minimum 6 characters)" />
             <TextField fx:id="createPassword" layoutX="224.0" layoutY="171.0" prefHeight="25.0" prefWidth="246.0" promptText="Password (Minimum 6 chars)" />
             <TextField fx:id="createEmail" layoutX="224.0" layoutY="209.0" prefHeight="25.0" prefWidth="246.0" promptText="Email" />
             <TextField fx:id="managerPIN" layoutX="224.0" layoutY="339.0" prefHeight="25.0" prefWidth="246.0" promptText="Authorisation PIN" />
             <Button layoutX="201.0" layoutY="260.0" mnemonicParsing="false" onAction="#staffRegisterLogin" text="Create staff account" />
             <Label layoutX="98.0" layoutY="310.0" text="If this will be a manager account, authorisation PIN is required" />
-            <Button layoutX="189.0" layoutY="379.0" mnemonicParsing="false" onAction="#managerRegisterLogin" text="Create manager account" />
+            <Button layoutX="189.0" layoutY="386.0" mnemonicParsing="false" onAction="#managerRegisterLogin" text="Create manager account" />
             <Label alignment="CENTER" layoutX="79.0" layoutY="60.0" prefHeight="17.0" prefWidth="122.0" text="First Name">
                <font>
                   <Font size="19.0" />
@@ -128,6 +128,11 @@
             <Label alignment="CENTER" layoutX="43.0" layoutY="338.0" prefHeight="28.0" prefWidth="158.0" text="Authorisation PIN">
                <font>
                   <Font size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="error" alignment="CENTER" layoutX="24.0" layoutY="423.0" prefHeight="109.0" prefWidth="480.0" textFill="RED">
+               <font>
+                  <Font size="14.0" />
                </font>
             </Label>
       </children>

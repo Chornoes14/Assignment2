@@ -31,21 +31,18 @@ public class CreateController {
 
     @FXML
     private TextField createEmail;
-
     @FXML
     private TextField createFirst;
-
     @FXML
     private TextField createLast;
-
     @FXML
     private TextField createPassword;
-
     @FXML
     private TextField createUsername;
-
     @FXML
     private TextField managerPIN;
+    @FXML
+    private Label error;
     
     
     
@@ -68,28 +65,50 @@ public class CreateController {
      * Return to main menu with manager account created
      * @param event
      * @throws IOException
+     * @throws SQLException 
      */
-    public void managerRegisterLogin(ActionEvent event) throws IOException {
+    public void managerRegisterLogin(ActionEvent event) throws IOException, SQLException {
     	
     	//Get all of the user inputs
+        ObservableList<UserCredentials> users = managerData();
     	String firstname = createFirst.getText();
     	String lastname = createLast.getText();
     	String username = createUsername.getText();
     	String password = createPassword.getText();
     	String email = createEmail.getText();
     	String pinManager = managerPIN.getText();
+        boolean valid = true;
     	
+
+        //Check if the manager pin required to create a manager account is correct
     	if (pinManager.equals("909")) {
-    	
-    		root = FXMLLoader.load(getClass().getResource("fxml/MusicMatchmakerLogin.fxml"));
-        	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        	scene = new Scene(root);
-        	stage.setScene(scene);
-        	stage.show();
+            
+            //check if both username and email has been used, username and email must be unique
+            //will check both managers and staff list, but for now to test proper functionality will simply use manager list
+            for (UserCredentials user: users) {
+                if (user.getUsername().equals(username)) {
+                    error.setText("\"" + username + "\" is already used, please use another username.");
+                    valid = false;
+                    break;
+                }
+                
+                if (user.getEmail().equals(email)) {
+                    error.setText("\"" + email + "\" is already used, please use another email");
+                    valid = false;
+                    break;
+                }
+            }
+            if (valid) {
+                root = FXMLLoader.load(getClass().getResource("fxml/MusicMatchmakerLogin.fxml"));
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
     	}
     	else {
     		managerPIN.clear();
-    		managerPIN.setText("PIN was incorrect");
+    		error.setText("PIN was incorrect");
     	}
     }
     
