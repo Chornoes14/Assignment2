@@ -57,20 +57,20 @@
                <children>
                   <TableView layoutX="79.0" layoutY="52.0" prefHeight="200.0" prefWidth="530.0">
                     <columns>
-                      <TableColumn prefWidth="126.0" text="Request Number" />
-                      <TableColumn minWidth="5.0" text="Event Title" />
-                        <TableColumn prefWidth="56.0" text="Artist" />
-                        <TableColumn prefWidth="88.0" text="Client Name" />
-                        <TableColumn minWidth="0.0" prefWidth="90.0" text="Date" />
-                        <TableColumn minWidth="0.0" prefWidth="89.0" text="Time" />
+                      <TableColumn fx:id="reqNum" prefWidth="126.0" text="Request Number" />
+                      <TableColumn fx:id="title" minWidth="5.0" text="Event Title" />
+                        <TableColumn fx:id="artist" prefWidth="56.0" text="Artist" />
+                        <TableColumn fx:id="clientName" prefWidth="88.0" text="Client Name" />
+                        <TableColumn fx:id="date" minWidth="0.0" prefWidth="90.0" text="Date" />
+                        <TableColumn fx:id="time" minWidth="0.0" prefWidth="89.0" text="Time" />
                     </columns>
                   </TableView>
                   <TableView layoutX="79.0" layoutY="304.0" prefHeight="200.0" prefWidth="530.0">
                     <columns>
-                      <TableColumn prefWidth="116.0" text="Venue Number" />
-                      <TableColumn prefWidth="112.0" text="Venue Name" />
-                        <TableColumn prefWidth="152.0" text="Compatibility Score" />
-                        <TableColumn prefWidth="152.0" text="Suitable for" />
+                      <TableColumn fx:id="venueNum" prefWidth="116.0" text="Venue Number" />
+                      <TableColumn fx:id="venueName" prefWidth="112.0" text="Venue Name" />
+                        <TableColumn fx:id="compatibility" prefWidth="152.0" text="Compatibility Score" />
+                        <TableColumn fx:id="suitable" prefWidth="152.0" text="Suitable for" />
                     </columns>
                   </TableView>
                   <Button layoutX="653.0" layoutY="62.0" mnemonicParsing="false" onAction="#table" text="Import Venue Data" />
