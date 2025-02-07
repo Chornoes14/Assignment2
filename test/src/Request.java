@@ -1,6 +1,6 @@
 
 
-public class Requests {
+public class Request {
 
     // private int requestID;
     private int duration;
@@ -26,7 +26,7 @@ public class Requests {
      * @param type
      * @param category
      */
-    public Requests(String clientName, String title, String artist, String requestDate,String requestTime, int duration, 
+    public Request(String clientName, String title, String artist, String requestDate,String requestTime, int duration, 
                         int numAudience, String type, String category) {
     
         this.clientName = clientName;
