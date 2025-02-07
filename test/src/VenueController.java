@@ -229,6 +229,7 @@ public class VenueController implements Initializable{
             output.setText("Please enter a valid whole number for capacity.");
             return;
         }
+        int capacity = Integer.parseInt(inputCap.getText());
         //get suitability
         String suitable = inputSuit.getText();
         if (suitable.isBlank()) {
@@ -242,13 +243,31 @@ public class VenueController implements Initializable{
             output.setText("Please enter category for the venue");
             return;
         }
-        
+        //Get booking price
         try {
         	int book = Integer.parseInt(inputBook.getText());
         }
         catch (NumberFormatException e) {
             output.setText("Please enter a valid whole number for booking price.");
             return;
+        }
+        int book = Integer.parseInt(inputBook.getText());
+
+        // Add new venue to the database
+        try {
+            //get current size of the venue
+            ObservableList<Venue> venues = venueTableData();
+            int venueID = venues.size() + 1;
+            SQLMethods.addVenue(new Venue(venueID, venueName, category, capacity, book, suitable));
+
+            root = FXMLLoader.load(getClass().getResource("fxml/ManageVenueAndRequests.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (SQLException e) {
+            System.out.println("Fail");
         }
 
 

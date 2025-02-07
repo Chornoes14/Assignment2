@@ -68,6 +68,34 @@ public class SQLMethods {
 		
 	}
 	
-	
+	/**
+	 * Add a new manager into the table
+	 * @param manager
+	 */
+	public static void addVenue(Venue venue) {
+		final String TABLE_NAME = "VENUES";
+
+		try(Connection con = DatabaseConnection.getConnection();
+				Statement stmt = con.createStatement()) {
+			String query = "INSERT INTO " + TABLE_NAME + " Values ('" +
+					venue.getVenueName() + "', '" +
+					venue.getCapacity() + "', '" +
+					venue.getSuitableFor() + "', '" +
+					venue.getCategory() + "', '" +
+					venue.getBookingPrice() + "')";
+
+			
+			int result = stmt.executeUpdate(query);
+
+			if (result == 1) {
+				System.out.println("Inset into table " + TABLE_NAME + " executed successfully");
+				System.out.println(result + " row(s) affected");
+			}
+		}
+		catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+	}
 
 }

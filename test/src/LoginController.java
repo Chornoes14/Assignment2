@@ -22,12 +22,12 @@ public class LoginController {
     
     // Create textfield of username, password and pin
     @FXML
-    TextField usernameField;
+    private TextField usernameField;
     @FXML
-    PasswordField passwordField;
+    private PasswordField passwordField;
 
     @FXML
-    Label error;
+    private Label error;
     
 
     private Stage stage;
