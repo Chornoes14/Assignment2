@@ -1,5 +1,5 @@
 --
--- File generated with SQLiteStudio v3.4.4 on Thu Feb 6 22:05:07 2025
+-- File generated with SQLiteStudio v3.4.15 on Fri Feb 7 15:49:59 2025
 --
 -- Text encoding used: System
 --
@@ -7,8 +7,8 @@ PRAGMA foreign_keys = off;
 BEGIN TRANSACTION;
 
 -- Table: MANAGERS
-CREATE TABLE IF NOT EXISTS MANAGERS (Username TEXT UNIQUE NOT NULL PRIMARY KEY, Password TEXT NOT NULL, Firstname TEXT NOT NULL, Lastname TEXT NOT NULL, Email BLOB NOT NULL, PIN INTEGER NOT NULL);
-INSERT INTO MANAGERS (Username, Password, Firstname, Lastname, Email, PIN) VALUES ('JulianChorn', 'password', 'Julian', 'Chorn', 'example123@gmail.com', 909);
+CREATE TABLE IF NOT EXISTS MANAGERS (Username TEXT UNIQUE NOT NULL PRIMARY KEY, Password TEXT NOT NULL, Firstname TEXT NOT NULL, Lastname TEXT NOT NULL, Email BLOB NOT NULL);
+INSERT INTO MANAGERS (Username, Password, Firstname, Lastname, Email) VALUES ('JulianChorn', 'password', 'Julian', 'Chorn', 'example123@gmail.com');
 
 -- Table: REQUESTS
 CREATE TABLE IF NOT EXISTS REQUESTS (Client TEXT NOT NULL, Title TEXT NOT NULL, Artist TEXT NOT NULL, Date TEXT NOT NULL, Time TEXT NOT NULL, Duration INTEGER NOT NULL, Target_Audience INTEGER NOT NULL, Type TEXT NOT NULL, Category TEXT NOT NULL, PRIMARY KEY (Client, Title));
