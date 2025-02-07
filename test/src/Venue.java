@@ -4,7 +4,7 @@ public class Venue {
     private String venueName;
     private String category;
     private int capacity;
-    private double bookingPrice;
+    private int bookingPrice;
     private boolean isAvailable;
     private String suitableFor;
     // private Suitability suitableFor;
@@ -18,7 +18,7 @@ public class Venue {
      * @param capacity
      * @param bookingPrice
      */
-    public Venue(int venueID, String venueName, String category, int capacity, double bookingPrice, String suitabilityString) {
+    public Venue(int venueID, String venueName, String category, int capacity, int bookingPrice, String suitabilityString) {
         this.venueID = venueID;
         this.venueName = venueName;
         this.category = category;
@@ -47,7 +47,7 @@ public class Venue {
         return capacity;
     }
     
-    public double getBookingPrice() {
+    public int getBookingPrice() {
         return bookingPrice;
     }
     

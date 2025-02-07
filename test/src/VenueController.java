@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.InputMismatchException;
 import java.util.ResourceBundle;
 
 import org.w3c.dom.events.MouseEvent;
@@ -37,6 +38,7 @@ public class VenueController implements Initializable{
     // Testing 
     @FXML
     private Label testLabel;
+    //Outputs
     @FXML
     private Label output;
 
@@ -71,6 +73,20 @@ public class VenueController implements Initializable{
     @FXML
     private TableColumn<Venue, Double> compatibility;
 
+    //Add venue
+    @FXML
+    private TextField inputVenue;
+    @FXML
+    private TextField inputCap;
+    @FXML
+    private TextField inputSuit;
+    @FXML
+    private TextField inputCategory;
+    @FXML
+    private TextField inputBook;
+
+
+
     // Initialize venue table
     ObservableList<Venue> venueTableData() throws SQLException {
         ObservableList<Venue> venues = FXCollections.observableArrayList();    //create object
@@ -84,7 +100,7 @@ public class VenueController implements Initializable{
                     resultSet.getString("Name"),
                     resultSet.getString("Category"),
                     resultSet.getInt("Capacity"),
-                    resultSet.getDouble("Booking_price"),
+                    resultSet.getInt("Booking_price"),
                     resultSet.getString("Suitable_for")
                 );
                 venues.add(venue);
@@ -138,7 +154,7 @@ public class VenueController implements Initializable{
      * @param password
      */
     public void displayName(String username, String password) {
-        testLabel.setText("Hello: " + username + password);
+        testLabel.setText("Hello " + username);
     }
 
 
@@ -174,11 +190,11 @@ public class VenueController implements Initializable{
             String venueName = inputName.getText();
             boolean valid = false;
 
+            //Venue field is not filled
             if (venueName.isEmpty()) {
                 output.setText("Please enter a name of the venue to get the details of");
                 return;
             }
-
             //Check if the name of the venue is part of the venues
             for (Venue venue: venues) {
                 if (venueName.equals(venue.getVenueName())) {
@@ -187,14 +203,10 @@ public class VenueController implements Initializable{
                     break;
                 }
             }
-
-
+            //Venue not in database
             if (!valid) {
-                output.setText(venueName + " is not in our database, please check if the name of the venue is correct");
+                output.setText(venueName + " is not in our database, please check if the name of the venue is correct.");
             }
-            
-
-
         }
         catch (SQLException e) {
             System.out.println("Cannot get table data");
@@ -202,7 +214,45 @@ public class VenueController implements Initializable{
 
     }
 
+    public void addVenue(ActionEvent event) throws IOException {
+        //get venue name
+        String venueName = inputVenue.getText();
+        if (venueName.isBlank()) {
+            output.setText("Please enter a venue name");
+            return;
+        }
+        //get capacity
+        try {
+        	int capacity = Integer.parseInt(inputCap.getText());
+        }
+        catch (NumberFormatException e) {
+            output.setText("Please enter a valid whole number for capacity.");
+            return;
+        }
+        //get suitability
+        String suitable = inputSuit.getText();
+        if (suitable.isBlank()) {
+            output.setText("Please enter a suitability for the venue");
+            return;
+        }
 
+        //get category
+        String category = inputCategory.getText();
+        if (category.isBlank()) {
+            output.setText("Please enter category for the venue");
+            return;
+        }
+        
+        try {
+        	int book = Integer.parseInt(inputBook.getText());
+        }
+        catch (NumberFormatException e) {
+            output.setText("Please enter a valid whole number for booking price.");
+            return;
+        }
+
+
+    }
 
 
 

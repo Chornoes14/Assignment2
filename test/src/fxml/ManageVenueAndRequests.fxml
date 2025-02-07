@@ -53,6 +53,7 @@
 <VBox prefHeight="803.0" prefWidth="905.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VenueController">
   <children>
     <MenuBar VBox.vgrow="NEVER" />
+      <Label text="Label" />
     <SplitPane focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
         <AnchorPane prefHeight="634.0" prefWidth="898.0">
@@ -75,10 +76,10 @@
                         <TableColumn fx:id="suitable" prefWidth="182.0" text="Suitable for" />
                     </columns>
                   </TableView>
-                  <Button layoutX="653.0" layoutY="87.0" mnemonicParsing="false" onAction="#table" text="Import Venue Data" />
-                  <Button layoutX="653.0" layoutY="133.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Import Requests" />
-                  <Button layoutX="718.0" layoutY="576.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Book Venue" />
-                  <Button layoutX="653.0" layoutY="276.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Auto Match" />
+                  <Button layoutX="705.0" layoutY="77.0" mnemonicParsing="false" onAction="#table" text="Import Venue Data" />
+                  <Button layoutX="705.0" layoutY="123.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Import Requests" />
+                  <Button layoutX="705.0" layoutY="301.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Book Venue" />
+                  <Button layoutX="705.0" layoutY="265.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Auto Match" />
                   <MenuButton layoutX="79.0" layoutY="288.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" text="Request Filter">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Action 1" />
@@ -96,8 +97,8 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Button layoutX="653.0" layoutY="177.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Save Data" />
-                  <Button layoutX="653.0" layoutY="221.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Load Data" />
+                  <Button layoutX="705.0" layoutY="177.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Save Data" />
+                  <Button layoutX="705.0" layoutY="219.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Load Data" />
                   <Button layoutX="551.0" layoutY="576.0" mnemonicParsing="false" onAction="#getVenueData" prefHeight="25.0" prefWidth="117.0" text="Venue Details" />
                   <Label fx:id="testLabel" layoutX="65.0" layoutY="23.0" text="TESTLABEL" />
                   <Button layoutX="197.0" layoutY="721.0" mnemonicParsing="false" onAction="#switchToStaff" prefHeight="25.0" prefWidth="192.0" text="Staff in the program" />
@@ -105,6 +106,22 @@
                   <Label fx:id="output" layoutX="33.0" layoutY="616.0" prefHeight="89.0" prefWidth="838.0" />
                   <TextField fx:id="inputName" layoutX="396.0" layoutY="576.0" prefHeight="25.0" prefWidth="126.0" promptText="Venue name" />
                   <Label layoutX="308.0" layoutY="580.0" text="Name of venue" />
+                  <Label layoutX="684.0" layoutY="335.0" text="New venue details">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="inputVenue" layoutX="724.0" layoutY="381.0" promptText="Venue name" />
+                  <TextField fx:id="inputCap" layoutX="724.0" layoutY="422.0" promptText="Capacity per 1 person" />
+                  <TextField fx:id="inputSuit" layoutX="724.0" layoutY="462.0" promptText="suitable for" />
+                  <TextField fx:id="inputCategory" layoutX="724.0" layoutY="499.0" promptText="Category" />
+                  <Button layoutX="740.0" layoutY="576.0" mnemonicParsing="false" onAction="#addVenue" prefHeight="25.0" prefWidth="117.0" text="Add Venue" />
+                  <Label layoutX="635.0" layoutY="385.0" text="Venue name" />
+                  <Label layoutX="638.0" layoutY="426.0" text="Capacity" />
+                  <Label layoutX="638.0" layoutY="466.0" text="Suitable for" />
+                  <Label layoutX="638.0" layoutY="503.0" text="Category" />
+                  <Label layoutX="638.0" layoutY="541.0" text="Booking price" />
+                  <TextField fx:id="inputBook" layoutX="724.0" layoutY="537.0" promptText="Booking price per hour" />
                </children>
         </AnchorPane>
       </items>
