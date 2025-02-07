@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.swing.Action;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
