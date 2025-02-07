@@ -1,16 +1,19 @@
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ResourceBundle;
 
-import javax.swing.table.TableColumn;
+// import javax.swing.table.TableColumn;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
 import javafx.scene.Parent;
@@ -18,9 +21,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
-public class VenueController {
+public class VenueController implements Initializable{
 
     private Stage stage;
     private Scene scene;
@@ -32,44 +38,48 @@ public class VenueController {
 
     //Requests Table
     @FXML
-    private TableColumn<?, ?> reqNum;
+    private TableView<Requests> requestTable;
     @FXML
-    private TableColumn<?, ?> title;
+    private TableColumn<Requests, Integer> reqNum;
     @FXML
-    private TableColumn<?, ?> artist;
+    private TableColumn<Requests, String> title;
     @FXML
-    private TableColumn<?, ?> clientName;
+    private TableColumn<Requests, String> artist;
     @FXML
-    private TableColumn<?, ?> date;
+    private TableColumn<Requests, String> clientName;
     @FXML
-    private TableColumn<?, ?> time;
+    private TableColumn<Requests, String> date;
+    @FXML
+    private TableColumn<Requests, String> time;
 
     //Venue Table
     @FXML
-    private TableColumn<?, ?> venueNum;
+    private TableView<Venue> venueTable;
     @FXML
-    private TableColumn<?, ?> venueName;
+    private TableColumn<Venue, Integer> venueNum;
     @FXML
-    private TableColumn<?, ?> suitable;
+    private TableColumn<Venue, String> venueName;
     @FXML
-    private TableColumn<?, ?> compatibility;
+    private TableColumn<Venue, String> suitable;
+    @FXML
+    private TableColumn<Venue, Double> compatibility;
 
     // Initialize table
-    ObservableList<UserCredentials> requestsTableData() throws SQLException {
-        ObservableList<UserCredentials> users = FXCollections.observableArrayList();    //create object
+    ObservableList<Venue> venueTableData() throws SQLException {
+        ObservableList<Venue> venues = FXCollections.observableArrayList();    //create object
 
         try (Connection con = DatabaseConnection.getConnection();
 			Statement stmt = con.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT * FROM MANAGERS")) {
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM VENUES")) {
 
             while (resultSet.next()) {
-                UserCredentials user = new UserCredentials(resultSet.getString("Username"),
-                    resultSet.getString("Password"),
-                    resultSet.getString("Firstname"),
-                    resultSet.getString("Lastname"),
-                    resultSet.getString("Email")
+                Venue venue = new Venue(resultSet.getString("Name"),
+                    resultSet.getString("Category"),
+                    resultSet.getInt("Capacity"),
+                    resultSet.getDouble("Booking price / hour"),
+                    resultSet.getString("Suitable for")
                 );
-                users.add(user);
+                venues.add(venue);
                 
             }
 
@@ -78,7 +88,7 @@ public class VenueController {
             e.printStackTrace();
             return FXCollections.observableArrayList();
 		}
-        return users;
+        return venues;
     }
 
 
@@ -107,4 +117,23 @@ public class VenueController {
         SQLMethods.checkTable();
     }
 
+
+    /**
+     * obtain the values of the table and fill the table with what is in the database
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //initialize venues table
+        // venueNum.setCellValueFactory(new PropertyValueFactory<Venue, Integer>("username"));      TO BE COMPLETED
+        venueName.setCellValueFactory(new PropertyValueFactory<Venue, String>("venueName"));
+        suitable.setCellValueFactory(new PropertyValueFactory<Venue, String>("suitableFor"));
+        // compatibility.setCellValueFactory(new PropertyValueFactory<Venue, Double>("email"));     TO BE COMPLETED
+    
+        try {
+            venueTable.setItems(venueTableData());
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            System.out.println("Error: unable to load table data.");
+        }
+    }
 }

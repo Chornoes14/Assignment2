@@ -55,7 +55,7 @@
       <items>
         <AnchorPane prefHeight="634.0" prefWidth="898.0">
                <children>
-                  <TableView layoutX="79.0" layoutY="52.0" prefHeight="200.0" prefWidth="530.0">
+                  <TableView fx:id="requestTabke" layoutX="79.0" layoutY="52.0" prefHeight="200.0" prefWidth="530.0">
                     <columns>
                       <TableColumn fx:id="reqNum" prefWidth="126.0" text="Request Number" />
                       <TableColumn fx:id="title" minWidth="5.0" text="Event Title" />
@@ -65,12 +65,10 @@
                         <TableColumn fx:id="time" minWidth="0.0" prefWidth="89.0" text="Time" />
                     </columns>
                   </TableView>
-                  <TableView layoutX="79.0" layoutY="304.0" prefHeight="200.0" prefWidth="530.0">
+                  <TableView fx:id="venueTable" layoutX="79.0" layoutY="304.0" prefHeight="200.0" prefWidth="530.0">
                     <columns>
-                      <TableColumn fx:id="venueNum" prefWidth="116.0" text="Venue Number" />
-                      <TableColumn fx:id="venueName" prefWidth="112.0" text="Venue Name" />
-                        <TableColumn fx:id="suitable" prefWidth="152.0" text="Suitable for" />
-                        <TableColumn fx:id="compatibility" prefWidth="152.0" text="Compatibility Score" />
+                      <TableColumn fx:id="venueName" prefWidth="308.0" text="Venue Name" />
+                        <TableColumn fx:id="suitable" prefWidth="220.0" text="Suitable for" />
                     </columns>
                   </TableView>
                   <Button layoutX="653.0" layoutY="62.0" mnemonicParsing="false" onAction="#table" text="Import Venue Data" />

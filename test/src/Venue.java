@@ -5,32 +5,31 @@ public class Venue {
     private int capacity;
     private double bookingPrice;
     private boolean isAvailable;
-    private Suitability suitableFor;
-
-    // private String eventType;
-    // private String eventStyle;
-
-    private class Suitability {
-        private String eventType;
-        private String eventStyle;
-
-        public Suitability(String eventType, String eventStyle) {
-            this.eventType = eventType;
-            this.eventStyle = eventStyle;
-        }
-
-        public String getEventType() {
-            return eventType;
-        }
-
-        public String getEventStyle() {
-            return eventStyle;
-        }
-
+    private String suitableFor;
+    // private Suitability suitableFor;
+    
+                    
+    public String getVenueName() {
+        return venueName;
     }
-
-
-    //Add innerclass for suitability
+    public String getCategory() {
+        return category;
+    }
+    
+    public int getCapacity() {
+        return capacity;
+    }
+    
+    public double getBookingPrice() {
+        return bookingPrice;
+    }
+    
+    public String getSuitableFor() {
+        return suitableFor;
+    }
+    public boolean isAvailable() {
+        return isAvailable;
+    }
 
     /**
      * Constructor for the venue class
@@ -43,11 +42,11 @@ public class Venue {
         this.venueName = venueName;
         this.category = category;
         this.capacity = capacity;
-        this. bookingPrice = bookingPrice;
+        this.bookingPrice = bookingPrice;
 
-        String[] suitableSplit = suitabilityString.split(";", 2);
+        // String[] suitableSplit = suitabilityString.split(";", 2);
 
-        suitableFor = new Suitability(suitableSplit[0], suitableSplit[1]);
+        suitableFor = suitabilityString;
 
         isAvailable = true;
     } 
@@ -60,13 +59,6 @@ public class Venue {
         return isAvailable;
     }
 
-    /**
-     * prints out the details of the venue
-     * may just use getters for all the variables instead
-     */
-    public void getVenueDetails() {
-
-    }
 
     /**
      * Set availability of the specific venue
