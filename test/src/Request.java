@@ -2,7 +2,7 @@
 
 public class Request {
 
-    // private int requestID;
+    private int requestID;
     private int duration;
     private int numAudience;
     private String clientName;
@@ -26,9 +26,9 @@ public class Request {
      * @param type
      * @param category
      */
-    public Request(String clientName, String title, String artist, String requestDate,String requestTime, int duration, 
+    public Request(int requestID, String clientName, String title, String artist, String requestDate,String requestTime, int duration, 
                         int numAudience, String type, String category) {
-    
+        this.requestID = requestID;
         this.clientName = clientName;
         this.title = title;
         this.artist = artist;
@@ -41,6 +41,9 @@ public class Request {
     
     }
     
+    public int getRequestID() {
+        return requestID;
+    }
 
     public int getDuration() {
         return duration;

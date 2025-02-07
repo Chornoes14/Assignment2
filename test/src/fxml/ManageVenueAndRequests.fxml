@@ -41,22 +41,26 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="624.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VenueController">
+<VBox prefHeight="803.0" prefWidth="905.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VenueController">
   <children>
     <MenuBar VBox.vgrow="NEVER" />
     <SplitPane focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
         <AnchorPane prefHeight="634.0" prefWidth="898.0">
                <children>
-                  <TableView fx:id="requestTable" layoutX="79.0" layoutY="52.0" prefHeight="200.0" prefWidth="530.0">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="89.0" layoutX="33.0" layoutY="616.0" stroke="BLACK" strokeType="INSIDE" width="838.0" />
+                  <TableView fx:id="requestTable" layoutX="79.0" layoutY="77.0" prefHeight="200.0" prefWidth="530.0">
                     <columns>
+                        <TableColumn fx:id="reqNum" prefWidth="75.0" text="Request No" />
                       <TableColumn fx:id="title" minWidth="5.0" text="Event Title" />
                         <TableColumn fx:id="artist" prefWidth="56.0" text="Artist" />
                         <TableColumn fx:id="clientName" prefWidth="88.0" text="Client Name" />
@@ -64,23 +68,24 @@
                         <TableColumn fx:id="time" minWidth="0.0" prefWidth="89.0" text="Time" />
                     </columns>
                   </TableView>
-                  <TableView fx:id="venueTable" layoutX="79.0" layoutY="304.0" prefHeight="200.0" prefWidth="530.0">
+                  <TableView fx:id="venueTable" layoutX="79.0" layoutY="362.0" prefHeight="200.0" prefWidth="530.0">
                     <columns>
-                      <TableColumn fx:id="venueName" prefWidth="308.0" text="Venue Name" />
-                        <TableColumn fx:id="suitable" prefWidth="220.0" text="Suitable for" />
+                        <TableColumn fx:id="venueNum" prefWidth="69.0" text="Venue No" />
+                      <TableColumn fx:id="venueName" prefWidth="277.0" text="Venue Name" />
+                        <TableColumn fx:id="suitable" prefWidth="182.0" text="Suitable for" />
                     </columns>
                   </TableView>
-                  <Button layoutX="653.0" layoutY="62.0" mnemonicParsing="false" onAction="#table" text="Import Venue Data" />
-                  <Button layoutX="653.0" layoutY="108.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Import Requests" />
-                  <Button layoutX="653.0" layoutY="460.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Book Venue" />
-                  <Button layoutX="653.0" layoutY="417.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Auto Match" />
-                  <MenuButton layoutX="79.0" layoutY="263.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" text="Request Filter">
+                  <Button layoutX="653.0" layoutY="87.0" mnemonicParsing="false" onAction="#table" text="Import Venue Data" />
+                  <Button layoutX="653.0" layoutY="133.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Import Requests" />
+                  <Button layoutX="718.0" layoutY="576.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Book Venue" />
+                  <Button layoutX="653.0" layoutY="276.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Auto Match" />
+                  <MenuButton layoutX="79.0" layoutY="288.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" text="Request Filter">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Action 1" />
                       <MenuItem mnemonicParsing="false" text="Action 2" />
                     </items>
                   </MenuButton>
-                  <MenuButton layoutX="79.0" layoutY="512.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" text="Venue Filter">
+                  <MenuButton layoutX="79.0" layoutY="570.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" text="Venue Filter">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Action 1" />
                         <MenuItem mnemonicParsing="false" text="Action 2" />
@@ -91,12 +96,15 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Button layoutX="653.0" layoutY="152.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Save Data" />
-                  <Button layoutX="653.0" layoutY="196.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Load Data" />
-                  <Button layoutX="653.0" layoutY="320.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Venue Details" />
+                  <Button layoutX="653.0" layoutY="177.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Save Data" />
+                  <Button layoutX="653.0" layoutY="221.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Load Data" />
+                  <Button layoutX="551.0" layoutY="576.0" mnemonicParsing="false" onAction="#getVenueData" prefHeight="25.0" prefWidth="117.0" text="Venue Details" />
                   <Label fx:id="testLabel" layoutX="65.0" layoutY="23.0" text="TESTLABEL" />
-                  <Button layoutX="207.0" layoutY="561.0" mnemonicParsing="false" onAction="#switchToStaff" prefHeight="25.0" prefWidth="192.0" text="Staff in the program" />
-                  <Button layoutX="505.0" layoutY="561.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="25.0" prefWidth="209.0" text="Logout" />
+                  <Button layoutX="197.0" layoutY="721.0" mnemonicParsing="false" onAction="#switchToStaff" prefHeight="25.0" prefWidth="192.0" text="Staff in the program" />
+                  <Button layoutX="515.0" layoutY="721.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="25.0" prefWidth="209.0" text="Logout" />
+                  <Label fx:id="output" layoutX="33.0" layoutY="616.0" prefHeight="89.0" prefWidth="838.0" />
+                  <TextField fx:id="inputName" layoutX="396.0" layoutY="576.0" prefHeight="25.0" prefWidth="126.0" promptText="Venue name" />
+                  <Label layoutX="308.0" layoutY="580.0" text="Name of venue" />
                </children>
         </AnchorPane>
       </items>

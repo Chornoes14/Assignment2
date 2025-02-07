@@ -1,5 +1,6 @@
 
 public class Venue {
+    private int venueID;
     private String venueName;
     private String category;
     private int capacity;
@@ -9,6 +10,32 @@ public class Venue {
     // private Suitability suitableFor;
     
                     
+    
+    /**
+     * Constructor for the venue class
+     * @param venueName
+     * @param category
+     * @param capacity
+     * @param bookingPrice
+     */
+    public Venue(int venueID, String venueName, String category, int capacity, double bookingPrice, String suitabilityString) {
+        this.venueID = venueID;
+        this.venueName = venueName;
+        this.category = category;
+        this.capacity = capacity;
+        this.bookingPrice = bookingPrice;
+        
+        // String[] suitableSplit = suitabilityString.split(";", 2);
+        
+        suitableFor = suitabilityString;
+        
+        isAvailable = true;
+    } 
+    
+    public int getVenueID() {
+        return venueID;
+    }
+
     public String getVenueName() {
         return venueName;
     }
@@ -30,27 +57,6 @@ public class Venue {
     public boolean isAvailable() {
         return isAvailable;
     }
-
-    /**
-     * Constructor for the venue class
-     * @param venueName
-     * @param category
-     * @param capacity
-     * @param bookingPrice
-     */
-    public Venue(String venueName, String category, int capacity, double bookingPrice, String suitabilityString) {
-        this.venueName = venueName;
-        this.category = category;
-        this.capacity = capacity;
-        this.bookingPrice = bookingPrice;
-
-        // String[] suitableSplit = suitabilityString.split(";", 2);
-
-        suitableFor = suitabilityString;
-
-        isAvailable = true;
-    } 
-
     /**
      * get the availability of the venue
      * @return Return true if the venue is available

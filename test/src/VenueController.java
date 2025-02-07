@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
+import org.w3c.dom.events.MouseEvent;
+
 // import javax.swing.table.TableColumn;
 
 import javafx.collections.FXCollections;
@@ -35,6 +37,11 @@ public class VenueController implements Initializable{
     // Testing 
     @FXML
     private Label testLabel;
+    @FXML
+    private Label output;
+
+    @FXML
+    private TextField inputName;
 
     //Requests Table
     @FXML
@@ -70,14 +77,15 @@ public class VenueController implements Initializable{
 
         try (Connection con = DatabaseConnection.getConnection();
 			Statement stmt = con.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT * FROM VENUES")) {
+            ResultSet resultSet = stmt.executeQuery("SELECT rowid, Name, Category, Capacity, Booking_price, Suitable_for FROM VENUES")) {
 
             while (resultSet.next()) {
-                Venue venue = new Venue(resultSet.getString("Name"),
+                Venue venue = new Venue(resultSet.getInt("rowid"),
+                    resultSet.getString("Name"),
                     resultSet.getString("Category"),
                     resultSet.getInt("Capacity"),
-                    resultSet.getDouble("Booking price / hour"),
-                    resultSet.getString("Suitable for")
+                    resultSet.getDouble("Booking_price"),
+                    resultSet.getString("Suitable_for")
                 );
                 venues.add(venue);
                 
@@ -97,10 +105,11 @@ public class VenueController implements Initializable{
 
         try (Connection con = DatabaseConnection.getConnection();
 			Statement stmt = con.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT * FROM REQUESTS")) {
+            ResultSet resultSet = stmt.executeQuery("SELECT rowid, Client, Title, Artist, Date, Time, Duration, Target_Audience, Type, Category FROM REQUESTS")) {
 
             while (resultSet.next()) {
-                Request request = new Request(resultSet.getString("Client"),
+                Request request = new Request(resultSet.getInt("rowid"),
+                    resultSet.getString("Client"),
                     resultSet.getString("Title"),
                     resultSet.getString("Artist"),
                     resultSet.getString("Date"),
@@ -123,9 +132,15 @@ public class VenueController implements Initializable{
     }
 
 
+    /**
+     * Test method
+     * @param username
+     * @param password
+     */
     public void displayName(String username, String password) {
         testLabel.setText("Hello: " + username + password);
     }
+
 
     public void switchToMain(ActionEvent event) throws IOException{
         root = FXMLLoader.load(getClass().getResource("fxml/MusicMatchmakerLogin.fxml"));
@@ -149,20 +164,77 @@ public class VenueController implements Initializable{
     }
 
 
+    public void getVenueData(ActionEvent event) throws IOException{
+
+        try {
+            //get table data
+            ObservableList<Venue> venues = venueTableData();
+
+            //Get inputID
+            String venueName = inputName.getText();
+            boolean valid = false;
+
+            if (venueName.isEmpty()) {
+                output.setText("Please enter a name of the venue to get the details of");
+                return;
+            }
+
+            //Check if the name of the venue is part of the venues
+            for (Venue venue: venues) {
+                if (venueName.equals(venue.getVenueName())) {
+                    output.setText("Capacity = " + venue.getCapacity() + "\nCategory = " + venue.getCategory() + "\nBooking price = $" + venue.getBookingPrice() + " per hour");
+                    valid = true;
+                    break;
+                }
+            }
+
+
+            if (!valid) {
+                output.setText(venueName + " is not in our database, please check if the name of the venue is correct");
+            }
+            
+
+
+        }
+        catch (SQLException e) {
+            System.out.println("Cannot get table data");
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * obtain the values of the table and fill the table with what is in the database
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //initialize venues table values
-        // venueNum.setCellValueFactory(new PropertyValueFactory<Venue, Integer>("username"));      TO BE COMPLETED, add the designated column to table after
+        venueNum.setCellValueFactory(new PropertyValueFactory<Venue, Integer>("venueID"));      //TO BE COMPLETED, add the designated column to table after
         venueName.setCellValueFactory(new PropertyValueFactory<Venue, String>("venueName"));
         suitable.setCellValueFactory(new PropertyValueFactory<Venue, String>("suitableFor"));
         // compatibility.setCellValueFactory(new PropertyValueFactory<Venue, Double>("email"));     TO BE COMPLETED, add the designated column to table after
     
 
         //initialize requests table values
-        // reqNum.setCellValueFactory(new PropertyValueFactory<Request, Integer>("requestID"));     TO BE COMPLETED, add the designated column to table after 
+        reqNum.setCellValueFactory(new PropertyValueFactory<Request, Integer>("requestID"));     //TO BE COMPLETED, add the designated column to table after 
         title.setCellValueFactory(new PropertyValueFactory<Request, String>("title"));
         artist.setCellValueFactory(new PropertyValueFactory<Request, String>("artist"));
         clientName.setCellValueFactory(new PropertyValueFactory<Request, String>("clientName"));

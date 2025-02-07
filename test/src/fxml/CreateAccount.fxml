@@ -97,7 +97,7 @@
             <TextField fx:id="createFirst" layoutX="224.0" layoutY="172.0" prefHeight="25.0" prefWidth="246.0" promptText="First name" />
             <TextField fx:id="createLast" layoutX="224.0" layoutY="211.0" prefHeight="25.0" prefWidth="246.0" promptText="Last name" />
             <TextField fx:id="managerPIN" layoutX="224.0" layoutY="339.0" prefHeight="25.0" prefWidth="246.0" promptText="Authorisation PIN" />
-            <Button layoutX="201.0" layoutY="260.0" mnemonicParsing="false" onAction="#staffRegisterLogin" text="Create staff account" />
+            <Button layoutX="203.0" layoutY="257.0" mnemonicParsing="false" onAction="#staffRegisterLogin" text="Create staff account" />
             <Label layoutX="98.0" layoutY="310.0" text="If this will be a manager account, authorisation PIN is required" />
             <Button layoutX="189.0" layoutY="386.0" mnemonicParsing="false" onAction="#managerRegisterLogin" text="Create manager account" />
             <Label alignment="CENTER" layoutX="79.0" layoutY="61.0" prefHeight="17.0" prefWidth="122.0" text="Email">
@@ -135,6 +135,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
+            <Button layoutX="201.0" layoutY="500.0" mnemonicParsing="false" onAction="#switchToMain" text="Return to login" />
       </children>
     </AnchorPane>
   </children>

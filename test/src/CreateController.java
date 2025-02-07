@@ -79,7 +79,6 @@ public class CreateController {
     	String pinManager = managerPIN.getText();
         boolean valid = true;
     	
-
         //Check if the manager pin required to create a manager account is correct
     	if (pinManager.equals("909")) {
             
@@ -127,7 +126,7 @@ public class CreateController {
             if (valid) {
 
                 //insert new manager into the manager table
-                SQLMethods.addManager(new Manager(username, password, firstname, lastname, email));
+                SQLMethods.addManager(new UserCredentials(username, password, firstname, lastname, email));
 
                 root = FXMLLoader.load(getClass().getResource("fxml/MusicMatchmakerLogin.fxml"));
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -144,6 +143,16 @@ public class CreateController {
     
     
     
+
+
+    public void switchToMain(ActionEvent event) throws IOException{
+        root = FXMLLoader.load(getClass().getResource("fxml/MusicMatchmakerLogin.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     
     /**
      * Get the data for the managers

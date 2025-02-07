@@ -14,8 +14,9 @@ public class Manager extends UserCredentials {
      * @param lastName
      * @param email
      */
-    public Manager(String username, String password, String firstName, String lastName, String email) {
+    public Manager(int managerID, String username, String password, String firstName, String lastName, String email) {
         super(username, password, firstName, lastName, email);
+        this.managerID = managerID;
     }
 
     public int getManagerID() {
