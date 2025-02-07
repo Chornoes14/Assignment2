@@ -5,7 +5,6 @@
  */
 public class Manager extends UserCredentials {
     private int managerID;
-    private int pin;
 
     /**
      * Constructor for manager object
@@ -14,22 +13,15 @@ public class Manager extends UserCredentials {
      * @param firstName
      * @param lastName
      * @param email
-     * @param managerID
-     * @param pin
      */
-    public Manager(String username, String password, String firstName, String lastName, String email, int managerID, int pin) {
+    public Manager(String username, String password, String firstName, String lastName, String email) {
         super(username, password, firstName, lastName, email);
-        this.managerID = managerID;
-        this.pin = pin;
     }
 
     public int getManagerID() {
         return managerID;
     }
 
-    public int getPin() {
-        return pin;
-    }
 
 
     /**

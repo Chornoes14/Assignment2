@@ -109,7 +109,6 @@ public class CreateController {
                     break;
                 }
             }
-
             //validate password, firstname and lastname
             if (password.length() < 6 && valid) {
                 error.setText("Please enter a valid password with minimum 6 characters");
@@ -124,8 +123,12 @@ public class CreateController {
                 valid = false;
             }
 
-
+            // All fields are valid, add the new user to the managers list
             if (valid) {
+
+                //insert new manager into the manager table
+                SQLMethods.addManager(new Manager(username, password, firstname, lastname, email));
+
                 root = FXMLLoader.load(getClass().getResource("fxml/MusicMatchmakerLogin.fxml"));
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);

@@ -5,8 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 
 /**
@@ -40,33 +38,33 @@ public class SQLMethods {
 	}
 
 
-	public static ObservableList<UserCredentials> getManagerTable() {
-		ObservableList<UserCredentials> users = FXCollections.observableArrayList();    //create object
-
-        try (Connection con = DatabaseConnection.getConnection();
-			Statement stmt = con.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT * FROM MANAGERS")) {
-
-            while (resultSet.next()) {
-                UserCredentials user = new UserCredentials(resultSet.getString("Username"),
-                    resultSet.getString("Password"),
-                    resultSet.getString("Firstname"),
-                    resultSet.getString("Lastname"),
-                    resultSet.getString("Email")
-                );
-                users.add(user);
-                
-            }
-
-		} catch (SQLException e) {
-			System.out.println("Error: Unable to fetch data from the database");
-            e.printStackTrace();
-            return FXCollections.observableArrayList();
-		}
-        return users;
-    }
-	
+	/**
+	 * Add a new manager into the table
+	 * @param manager
+	 */
 	public static void addManager(UserCredentials manager) {
+		final String TABLE_NAME = "MANAGERS";
+
+		try(Connection con = DatabaseConnection.getConnection();
+				Statement stmt = con.createStatement()) {
+			String query = "INSERT INTO " + TABLE_NAME + " Values ('" +
+					manager.getUsername() + "', '" +
+					manager.getPassword() + "', '" +
+					manager.getFirstName() + "', '" +
+					manager.getLastName() + "', '" +
+					manager.getEmail() + "')";
+
+			
+			int result = stmt.executeUpdate(query);
+
+			if (result == 1) {
+				System.out.println("Inset into table " + TABLE_NAME + " executed successfully");
+				System.out.println(result + " row(s) affected");
+			}
+		}
+		catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
 		
 	}
 	
