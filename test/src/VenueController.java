@@ -1,5 +1,13 @@
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
+import javax.swing.table.TableColumn;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,8 +28,58 @@ public class VenueController {
     
     // Testing 
     @FXML
-    Label testLabel;
+    private Label testLabel;
 
+    //Requests Table
+    @FXML
+    private TableColumn<?, ?> reqNum;
+    @FXML
+    private TableColumn<?, ?> title;
+    @FXML
+    private TableColumn<?, ?> artist;
+    @FXML
+    private TableColumn<?, ?> clientName;
+    @FXML
+    private TableColumn<?, ?> date;
+    @FXML
+    private TableColumn<?, ?> time;
+
+    //Venue Table
+    @FXML
+    private TableColumn<?, ?> venueNum;
+    @FXML
+    private TableColumn<?, ?> venueName;
+    @FXML
+    private TableColumn<?, ?> suitable;
+    @FXML
+    private TableColumn<?, ?> compatibility;
+
+    // Initialize table
+    ObservableList<UserCredentials> requestsTableData() throws SQLException {
+        ObservableList<UserCredentials> users = FXCollections.observableArrayList();    //create object
+
+        try (Connection con = DatabaseConnection.getConnection();
+			Statement stmt = con.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM MANAGERS")) {
+
+            while (resultSet.next()) {
+                UserCredentials user = new UserCredentials(resultSet.getString("Username"),
+                    resultSet.getString("Password"),
+                    resultSet.getString("Firstname"),
+                    resultSet.getString("Lastname"),
+                    resultSet.getString("Email")
+                );
+                users.add(user);
+                
+            }
+
+		} catch (SQLException e) {
+			System.out.println("Error: Unable to fetch data from the database");
+            e.printStackTrace();
+            return FXCollections.observableArrayList();
+		}
+        return users;
+    }
 
 
     public void displayName(String username, String password) {
@@ -48,4 +106,5 @@ public class VenueController {
     public void table(ActionEvent event) throws IOException {
         SQLMethods.checkTable();
     }
+
 }

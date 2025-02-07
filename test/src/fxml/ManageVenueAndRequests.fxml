@@ -69,8 +69,8 @@
                     <columns>
                       <TableColumn fx:id="venueNum" prefWidth="116.0" text="Venue Number" />
                       <TableColumn fx:id="venueName" prefWidth="112.0" text="Venue Name" />
-                        <TableColumn fx:id="compatibility" prefWidth="152.0" text="Compatibility Score" />
                         <TableColumn fx:id="suitable" prefWidth="152.0" text="Suitable for" />
+                        <TableColumn fx:id="compatibility" prefWidth="152.0" text="Compatibility Score" />
                     </columns>
                   </TableView>
                   <Button layoutX="653.0" layoutY="62.0" mnemonicParsing="false" onAction="#table" text="Import Venue Data" />

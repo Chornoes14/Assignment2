@@ -86,18 +86,45 @@ public class CreateController {
             //check if both username and email has been used, username and email must be unique
             //will check both managers and staff list, but for now to test proper functionality will simply use manager list
             for (UserCredentials user: users) {
-                if (user.getUsername().equals(username)) {
-                    error.setText("\"" + username + "\" is already used, please use another username.");
-                    valid = false;
-                    break;
-                }
-                
+                //Validate email
                 if (user.getEmail().equals(email)) {
                     error.setText("\"" + email + "\" is already used, please use another email");
                     valid = false;
                     break;
                 }
+                else if (email.isEmpty()) {
+                    error.setText("Please enter an email");
+                    valid = false;
+                    break;
+                }
+                //Validate username
+                if (user.getUsername().equals(username)) {
+                    error.setText("\"" + username + "\" is already used, please use another username.");
+                    valid = false;
+                    break;
+                }
+                else if(username.length() < 6) {
+                    error.setText("Please enter a username with at least 6 characters");
+                    valid = false;
+                    break;
+                }
             }
+
+            //validate password, firstname and lastname
+            if (password.length() < 6 && valid) {
+                error.setText("Please enter a valid password with minimum 6 characters");
+                valid = false;
+            }
+            else if (firstname.isEmpty() && valid) {
+                error.setText("Please enter a first name");
+                valid = false;
+            }
+            else if (lastname.isEmpty() && valid) {
+                error.setText("Please enter a last name");
+                valid = false;
+            }
+
+
             if (valid) {
                 root = FXMLLoader.load(getClass().getResource("fxml/MusicMatchmakerLogin.fxml"));
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();

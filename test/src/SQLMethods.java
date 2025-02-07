@@ -66,6 +66,10 @@ public class SQLMethods {
         return users;
     }
 	
+	public static void addManager(UserCredentials manager) {
+		
+	}
+	
 	
 
 }
