@@ -38,19 +38,19 @@ public class VenueController implements Initializable{
 
     //Requests Table
     @FXML
-    private TableView<Requests> requestTable;
+    private TableView<Request> requestTable;
     @FXML
-    private TableColumn<Requests, Integer> reqNum;
+    private TableColumn<Request, Integer> reqNum;
     @FXML
-    private TableColumn<Requests, String> title;
+    private TableColumn<Request, String> title;
     @FXML
-    private TableColumn<Requests, String> artist;
+    private TableColumn<Request, String> artist;
     @FXML
-    private TableColumn<Requests, String> clientName;
+    private TableColumn<Request, String> clientName;
     @FXML
-    private TableColumn<Requests, String> date;
+    private TableColumn<Request, String> date;
     @FXML
-    private TableColumn<Requests, String> time;
+    private TableColumn<Request, String> time;
 
     //Venue Table
     @FXML
@@ -64,7 +64,7 @@ public class VenueController implements Initializable{
     @FXML
     private TableColumn<Venue, Double> compatibility;
 
-    // Initialize table
+    // Initialize venue table
     ObservableList<Venue> venueTableData() throws SQLException {
         ObservableList<Venue> venues = FXCollections.observableArrayList();    //create object
 
@@ -89,6 +89,37 @@ public class VenueController implements Initializable{
             return FXCollections.observableArrayList();
 		}
         return venues;
+    }
+
+    // Initialize requests table
+    ObservableList<Request> requestTableData() throws SQLException {
+        ObservableList<Request> requests = FXCollections.observableArrayList();    //create object
+
+        try (Connection con = DatabaseConnection.getConnection();
+			Statement stmt = con.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM REQUESTS")) {
+
+            while (resultSet.next()) {
+                Request request = new Request(resultSet.getString("Client"),
+                    resultSet.getString("Title"),
+                    resultSet.getString("Artist"),
+                    resultSet.getString("Date"),
+                    resultSet.getString("Time"),
+                    resultSet.getInt("Duration"),
+                    resultSet.getInt("Target_Audience"),
+                    resultSet.getString("Type"),
+                    resultSet.getString("Category")
+                );
+                requests.add(request);
+                
+            }
+
+		} catch (SQLException e) {
+			System.out.println("Error: Unable to fetch data from the database");
+            e.printStackTrace();
+            return FXCollections.observableArrayList();
+		}
+        return requests;
     }
 
 
@@ -123,17 +154,35 @@ public class VenueController implements Initializable{
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //initialize venues table
-        // venueNum.setCellValueFactory(new PropertyValueFactory<Venue, Integer>("username"));      TO BE COMPLETED
+        //initialize venues table values
+        // venueNum.setCellValueFactory(new PropertyValueFactory<Venue, Integer>("username"));      TO BE COMPLETED, add the designated column to table after
         venueName.setCellValueFactory(new PropertyValueFactory<Venue, String>("venueName"));
         suitable.setCellValueFactory(new PropertyValueFactory<Venue, String>("suitableFor"));
-        // compatibility.setCellValueFactory(new PropertyValueFactory<Venue, Double>("email"));     TO BE COMPLETED
+        // compatibility.setCellValueFactory(new PropertyValueFactory<Venue, Double>("email"));     TO BE COMPLETED, add the designated column to table after
     
+
+        //initialize requests table values
+        // reqNum.setCellValueFactory(new PropertyValueFactory<Request, Integer>("requestID"));     TO BE COMPLETED, add the designated column to table after 
+        title.setCellValueFactory(new PropertyValueFactory<Request, String>("title"));
+        artist.setCellValueFactory(new PropertyValueFactory<Request, String>("artist"));
+        clientName.setCellValueFactory(new PropertyValueFactory<Request, String>("clientName"));
+        date.setCellValueFactory(new PropertyValueFactory<Request, String>("requestDate"));
+        time.setCellValueFactory(new PropertyValueFactory<Request, String>("requestTime"));
+        
+
         try {
             venueTable.setItems(venueTableData());
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             System.out.println("Error: unable to load table data.");
         }
+
+        try {
+            requestTable.setItems(requestTableData());
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            System.out.println("Error: unable to load table data.");
+        }
+
     }
 }

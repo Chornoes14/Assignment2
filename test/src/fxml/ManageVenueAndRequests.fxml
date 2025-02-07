@@ -55,9 +55,8 @@
       <items>
         <AnchorPane prefHeight="634.0" prefWidth="898.0">
                <children>
-                  <TableView fx:id="requestTabke" layoutX="79.0" layoutY="52.0" prefHeight="200.0" prefWidth="530.0">
+                  <TableView fx:id="requestTable" layoutX="79.0" layoutY="52.0" prefHeight="200.0" prefWidth="530.0">
                     <columns>
-                      <TableColumn fx:id="reqNum" prefWidth="126.0" text="Request Number" />
                       <TableColumn fx:id="title" minWidth="5.0" text="Event Title" />
                         <TableColumn fx:id="artist" prefWidth="56.0" text="Artist" />
                         <TableColumn fx:id="clientName" prefWidth="88.0" text="Client Name" />

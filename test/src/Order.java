@@ -3,7 +3,7 @@ public class Order {
     private double hirePrice;
     private double comission;
 
-    private Requests request;
+    private Request request;
     private Venue venue;
 
 
