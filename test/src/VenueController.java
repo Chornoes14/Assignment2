@@ -1,6 +1,5 @@
 import java.io.IOException;
 
-import SQLmethods.SQLMethods;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

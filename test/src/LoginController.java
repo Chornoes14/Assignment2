@@ -6,7 +6,6 @@ import java.sql.Statement;
 
 import javax.swing.Action;
 
-import SQLmethods.DatabaseConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -79,7 +78,13 @@ public class LoginController {
         stage.show();
 
     }
-
+    
+    
+    /**
+     * Get the data for the managers
+     * @return
+     * @throws SQLException
+     */
     ObservableList<UserCredentials> initialData() throws SQLException {
         ObservableList<UserCredentials> users = FXCollections.observableArrayList();    //create object
 
